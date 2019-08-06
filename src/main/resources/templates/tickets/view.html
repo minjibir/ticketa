@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	   layout:decorate="~{basic}">
+	<head>
+		<title>Ticketa</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+
+	<body>
+
+		<div layout:fragment="content" class="container">
+			<div class="row justify-content-center my-5">
+				<div class="col">
+					<h3 class="text-center">TRANSNOVA TICKET CHECKOUT</h3>
+				</div>
+			</div>
+			<div class="row justify-content-center m-5">
+				<div class="col-12">
+					<div class="card bg-dark text-white">
+						<div class="card text-white bg-primary mb-3 z-depth-2">
+							<div class="card-header"><h4>Ticket Details</h4></div>
+							<div class="card-body">
+								<h5 class="card-title">From <span class="right-align" th:text="${ticket.tripId.stationId.stationName}"></span></h5>
+								<br />
+
+								<h5 class="card-title">To: <span th:text="${ticket.tripId.stationidStation.stationName}"></span></h5>
+								<br />
+
+								<h5 class="card-title">Departure <span th:text="${ticket.tripId.tripTime}"></span></h5>
+								<br />
+
+								<h5 class="card-title">Trip Fare: <span th:text="${ticket.tripId.tripPrice}"></span></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<a href="https://paystack.com/pay/5v6hkzwxj1" class="btn btn-success m-5" >Proceed to payment</a>-->
+				<a th:href="@{/book/} + ${ticket.ticketId}" class="btn btn-success m-5" >Proceed to payment</a>
+			</div>
+		</div>
+
+	</body>
+</html>

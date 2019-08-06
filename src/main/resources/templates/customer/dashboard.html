@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	   layout:decorate="~{basic}">
+	<head>
+		<title>Ticketa</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+
+			<div class="container-fluid p-5">
+				<div class="row my-4">
+					<div class="col-3">
+						<!-- List group -->
+						<div class="list-group" id="myList" role="tablist">
+							<a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile" role="tab">Profile</a>
+							<a class="list-group-item list-group-item-action" data-toggle="list" href="#tickets" role="tab">Tickets</a>
+							<a class="list-group-item list-group-item-action" data-toggle="list" href="#payments" role="tab">Payments</a>
+							<a class="list-group-item list-group-item-action" data-toggle="list" href="#notifications" role="tab">Notifications</a>
+						</div>
+					</div>
+
+					<div class="col-9">
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane active" id="profile" role="tabpanel">
+								<div class="row">
+									<div class="col">
+										<h3 class="text-center">My Profile</h3>
+									</div>
+								</div>
+
+								<div class="container">
+									<div class="row">
+										<div class="card p-0 col-12 z-depth-1 pagination">
+											<p>First Name: </p>
+											<p>Last Name: </p>
+											<p>Phone Number: </p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane" id="tickets" role="tabpanel">
+								<div class="row">
+									<div class="col">
+										<h3 class="text-center">Tickets</h3>
+									</div>
+								</div>
+
+								<div class="container">
+									<div class="row">
+										<div class="card p-0 col-12 z-depth-1 pagination">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<th>#</th>
+														<th>Origin</th>
+														<th>Destination</th>
+														<th>Departure Time</th>
+														<th>Round-Trip</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tr th:each="tck : ${tickets}">
+													<td th:text="${tck.ticketId}"></td>
+													<td th:text="${tck.tripId.stationidStation.stationName}"></td>
+													<td th:text="${tck.tripId.stationId.stationName}"></td>
+													<td th:text="${tck.tripId.tripTime}"></td>
+													<td th:text="${tck.onewayTicket}"></td>
+													<td th:text="${tck.tripId.tripPrice}"></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane" id="payments" role="tabpanel">
+								<div class="row">
+									<div class="col">
+										<h3 class="text-center">Payments</h3>
+									</div>
+								</div>
+
+								<div class="container">
+									<div class="row">
+										<div class="card p-0 col-12 z-depth-1 pagination">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<th>Payment ID</th>
+														<th>Amount Paid</th>
+														<th>Time Paid</th>
+														<th>Ticket No.</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="payment : ${payments}">
+														<td th:text="${payment.paymentId}"></td>
+														<td th:text="${payment.paymentAmount}"></td>
+														<td th:text="${payment.paymentTime}"></td>
+														<td th:text="${payment.ticketId.ticketId}"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane" id="notifications" role="tabpanel">
+								<div class="row">
+									<div class="col">
+										<h3 class="text-center">Notifications</h3>
+									</div>
+								</div>
+
+								<div class="container">
+									<div class="row">
+										<div class="card p-0 col-12 z-depth-1 pagination">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<th>Notification #</th>
+														<th>Date Received</th>
+														<th>Customer ID</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="notification : ${notifications}">
+														<td th:text="${notification.notificationId}"></td>
+														<td th:text="${notification.dateSent}"></td>
+														<td th:text="${notification.customerId.customerId}"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+						<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+						<script>
+							$('#myList a').on('click', function (e) {
+								e.preventDefault()
+								$(this).tab('show')
+							})
+
+							$('#myList a[href="#profile"]').tab('show') // Select tab by name
+							$('#myList a:first-child').tab('show') // Select first tab
+							$('#myList a:last-child').tab('show') // Select last tab
+							$('#myList a:nth-child(3)').tab('show') // Select third tab
+						</script>-->
+	</body>
+</html>
