@@ -1,0 +1,1 @@
+The system original system is under transition into set of micro-services for scalability and maintainability purpose. Before that, the system is initially a prototype and lack proper testing. The intention now is to redesign and re-implement it using modern and efficient techniques.
